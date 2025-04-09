@@ -8,16 +8,13 @@ import os
 def create_app():
     app = Flask(__name__)
 
-    origins = os.getenv("FRONTEND_ORIGINS", "http://localhost:5174").split(",")
-
-    CORS(app, origins=origins, supports_credentials=True, allow_headers=[
-        "Content-Type", 
-        "Authorization", 
-        "X-Amz-Date",
-        "X-Api-Key",
-        "X-Amz-Security-Token"
-    ], methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH", "HEAD"])
-
+    CORS(app, resources={r"/*": {
+        "origins": os.getenv("FRONTEND_ORIGINS", "*").split(","),
+        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization"],
+        "supports_credentials": True
+    }})
+    
     Swagger(app)
     app.register_blueprint(task_routes)
     return app
