@@ -4,3 +4,4 @@ python-dotenv
 pymongo
 pytest
 flasgger
+flask-cors
