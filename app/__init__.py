@@ -8,11 +8,13 @@ import os
 def create_app():
     app = Flask(__name__)
 
+    #origins_raw = os.getenv("FRONTEND_ORIGINS")
+    #origins = origins_raw.split(",") if origins_raw else ["*"]
+
     CORS(app, resources={r"/*": {
-        "origins": os.getenv("FRONTEND_ORIGINS", "*").split(","),
+        "origins": "*",
         "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization"],
-        "supports_credentials": True
     }})
     
     Swagger(app)

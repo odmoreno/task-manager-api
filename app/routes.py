@@ -1,10 +1,14 @@
 from flask import Blueprint, request, jsonify
-import uuid
 from app.services import get_all_tasks, create_task, update_task, delete_task, require_auth
+from flask_cors import cross_origin
+
+import uuid
+
 
 task_routes = Blueprint('task_routes', __name__)
 
 @task_routes.route('/tasks', methods=['GET'])
+@cross_origin()
 def get_tasks():
     """
     Obtener todas las tareas
