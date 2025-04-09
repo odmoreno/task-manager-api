@@ -1,0 +1,6 @@
+flask
+aws-lambda-wsgi
+python-dotenv
+pymongo
+pytest
+flasgger

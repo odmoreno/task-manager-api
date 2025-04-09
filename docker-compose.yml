@@ -1,0 +1,9 @@
+services:
+  flask-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5000:8080"
+    env_file: 
+      - .env

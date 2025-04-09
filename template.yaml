@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Task Manager API - Flask en Lambda usando contenedor Docker
+
+Resources:
+  TaskApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      Architectures:
+        - x86_64
+      ImageUri: flask-lambda-api:latest
+      Timeout: 30
+      Events:
+        TaskApi:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY

@@ -1,0 +1,5 @@
+/.env
+/notes.txt
+/event_get.json
+/event_post.json
+/aws-lambda-rie.exe
